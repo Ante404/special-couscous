@@ -1,7 +1,182 @@
 <!DOCTYPE html>
 <html>
-<head><title>Moja Stranica</title></head>
+<head>
+<title>MOMACKA</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<style>
+body,h1,h2{font-family: "Raleway", sans-serif}
+body, html {height: 100%}
+p {line-height: 2}
+.bgimg, .bgimg2 {
+  min-height: 100%;
+  background-position: center;
+  background-size: cover;
+}
+.bgimg {background-image: url("lipa3.jpg")}
+.bgimg2 {background-image: url("lipa1.jpg")}
+</style>
+</head>
 <body>
-  <h1>Pozdrav svijete!</h1>
+
+<!-- Header / Home-->
+<header class="w3-display-container w3-wide bgimg w3-grayscale-min" id="home">
+  <div class="w3-display-middle w3-text-white w3-center">
+    <h1 class="w3-jumbo">MOMACKA</h1>
+    <h2></h2>
+    <h2><b>01.04.2025.- 03.04.2025.</b></h2>
+  </div>
+</header>
+
+<!-- Navbar (sticky bottom) -->
+
+
+<!-- About / Jane And John -->
+<div class="w3-container w3-padding-64 w3-yellow w3-grayscale-min" id="us">
+  <div class="w3-content">
+    <h1 class="w3-center w3-text-grey"><b>INFO</b></h1>
+   
+    <p><i></i>
+    </p><br>
+    <p class="w3-center"><a href="#wedding" class="w3-button w3-black w3-round w3-padding-large w3-large">Detalji</a></p>
+  </div>
+</div>
+
+<!-- Background photo -->
+<div class="w3-display-container bgimg2">
+  <div class="w3-display-middle w3-text- w3-center">
+    <h1 class="w3-jumbo"></h1><br>
+    <h2></h2>
+  </div>
+</div>
+
+<!-- Wedding information -->
+<div class="w3-container w3-padding-64 w3-black w3-grayscale-min w3-center" id="wedding">
+  <div class="w3-content">
+    <h1 class="w3-text-yellow"><b>MOMACKA</b></h1>
+    
+    <div class="w3-row">
+      <div class="w3-half">
+        <h2>Kada</h2>
+        <p>Od 01. Travnja 2025.</p>
+        <p>Do 03. Travnja 2025.</p>
+      </div>
+      <div class="w3-half">
+        <h2>Gdje</h2>
+        <p>Lipa Luxury, Tomislavgrad</p>
+        <a href="https://maps.app.goo.gl/Piqx3tHJSWuBH2Yp9">Google Maps</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RSVP</title>
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+</head>
+<body>
+
+<!-- Sekcija za RSVP -->
+<div class="w3-container w3-padding-64 w3-grey w3-center w3-wide" id="rsvp">
+  <h1></h1>
+  <p class="w3-large">Javite do 15.03.2025.</p>
+  <p class="w3-xlarge">
+    <button onclick="document.getElementById('id01').style.display='block'" 
+            class="w3-button w3-round w3-yellow w3-opacity w3-hover-opacity-off" 
+            style="padding:8px 60px">
+      REZERVACIJA
+    </button>
+  </p>
+</div>
+
+<!-- RSVP modal -->
+<div id="id01" class="w3-modal">
+  <div class="w3-modal-content w3-card-4 w3-animate-zoom" style="padding:32px;max-width:600px">
+    <div class="w3-container w3-white w3-center">
+      <h1 class="w3-wide">MOŽEŠ LI DOĆI?</h1>
+
+      <!-- Input za ime -->
+      <input id="nameInput" class="w3-input w3-border w3-margin-bottom" type="text" placeholder="Ime" name="name">
+
+      <div class="w3-row">
+        <div class="w3-half">
+          <button onclick="handleRSVP('idem')" type="button" class="w3-button w3-block w3-green">
+            IDEM
+          </button>
+        </div>
+        <div class="w3-half">
+          <button onclick="handleRSVP('ne mogu')" type="button" class="w3-button w3-block w3-red">
+            NE MOGU
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Prikaz odabira -->
+<div id="rsvpResult" class="w3-center" style="margin-top:20px;"></div>
+
+<!-- Footer -->
+<div class="w3-hide-small" style="margin-bottom:32px"></div>
+
+<script>
+  function handleRSVP(choice) {
+    const name = document.getElementById('nameInput').value.trim();
+
+    if (name === "") {
+      alert("Molimo unesite ime.");
+      return;
+    }
+
+    // Spremanje u Local Storage
+    localStorage.setItem('rsvpName', name);
+    localStorage.setItem('rsvpChoice', choice);
+
+    // Zatvaranje modala
+    document.getElementById('id01').style.display = 'none';
+
+    // Prikaz rezultata
+    updateRSVPResult(name, choice);
+  }
+
+  function updateRSVPResult(name, choice) {
+    let resultHTML = '';
+    if (choice === 'idem') {
+      resultHTML = `<div class="w3-panel w3-green w3-padding">
+                      <h3>Hvala, ${name}!</h3>
+                      <p>Tvoj odabir: <strong>Dolazim!</strong> 🎉</p>
+                    </div>`;
+    } else if (choice === "ne mogu") {
+      resultHTML = `<div class="w3-panel w3-red w3-padding">
+                      <h3>Hvala, ${name}!</h3>
+                      <p>Tvoj odabir: <strong>Ne mogu doći.</strong> 😢</p>
+                    </div>`;
+    }
+    document.getElementById('rsvpResult').innerHTML = resultHTML;
+  }
+
+  // Učitavanje prethodno spremljenog odgovora pri pokretanju stranice
+  window.addEventListener('load', function() {
+    const savedName = localStorage.getItem('rsvpName');
+    const savedChoice = localStorage.getItem('rsvpChoice');
+
+    if (savedName && savedChoice) {
+      updateRSVPResult(savedName, savedChoice);
+    }
+  });
+</script>
+
+</body>
+</html>
+
+
+
 </body>
 </html>
